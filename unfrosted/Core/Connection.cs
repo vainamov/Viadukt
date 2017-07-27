@@ -5,24 +5,33 @@ namespace unfrosted.Core
 {
     internal class Connection
     {
-        private readonly TcpClient client;
         private readonly NetworkStream stream;
-        private readonly BinaryReader reader;
-        private readonly BinaryWriter writer;
+        public BinaryReader BinaryReader { get; }
+        public BinaryWriter BinaryWriter { get; }
+
+        public bool DataAvailable => stream.DataAvailable;
 
         public Connection(TcpClient client) {
-            this.client = client;
             stream = client.GetStream();
-            reader = new BinaryReader(stream);
-            writer = new BinaryWriter(stream);
+            BinaryReader = new BinaryReader(stream);
+            BinaryWriter = new BinaryWriter(stream);
         }
 
-        public void Write(byte[] buffer) {
-            writer.Write(buffer);
+        public void WriteCode(ProtocolCode code) {
+            BinaryWriter.Write((byte)code);
         }
 
-        public byte[] Read(int count) {
-            return reader.ReadBytes(count);
+        public ProtocolCode ReadCode() {
+            return (ProtocolCode) BinaryReader.ReadByte();
+        }
+
+        public void Dispose() {
+            BinaryReader.Close();
+            BinaryReader.Dispose();
+            BinaryWriter.Close();
+            BinaryWriter.Dispose();
+            stream.Close();
+            stream.Dispose();
         }
     }
 }
