@@ -30,10 +30,10 @@
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTransfers = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiConnectionDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiTransfers = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -67,19 +67,25 @@
             // tsmiSettings
             // 
             this.tsmiSettings.Name = "tsmiSettings";
-            this.tsmiSettings.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSettings.Size = new System.Drawing.Size(116, 22);
             this.tsmiSettings.Text = "Settings";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(113, 6);
             // 
             // tsmiClose
             // 
             this.tsmiClose.Name = "tsmiClose";
-            this.tsmiClose.Size = new System.Drawing.Size(152, 22);
+            this.tsmiClose.Size = new System.Drawing.Size(116, 22);
             this.tsmiClose.Text = "Close";
+            // 
+            // tsmiTransfers
+            // 
+            this.tsmiTransfers.Name = "tsmiTransfers";
+            this.tsmiTransfers.Size = new System.Drawing.Size(66, 19);
+            this.tsmiTransfers.Text = "Transfers";
             // 
             // tsmiInfo
             // 
@@ -101,12 +107,6 @@
             this.tsmiAbout.Name = "tsmiAbout";
             this.tsmiAbout.Size = new System.Drawing.Size(161, 22);
             this.tsmiAbout.Text = "About unfrosted";
-            // 
-            // tsmiTransfers
-            // 
-            this.tsmiTransfers.Name = "tsmiTransfers";
-            this.tsmiTransfers.Size = new System.Drawing.Size(66, 19);
-            this.tsmiTransfers.Text = "Transfers";
             // 
             // button1
             // 

@@ -31,7 +31,7 @@ namespace unfrosted
 
                         transfers.Add(transfer);
                         var thread = new Thread(ListenToConnection);
-                        thread.Start();
+                        thread.Start(transfer);
                     }
                 });
             } catch { }
@@ -54,7 +54,7 @@ namespace unfrosted
                     var size = transfer.Connection.BinaryReader.ReadUInt64();
                     var filename = transfer.Connection.BinaryReader.ReadString();
 
-                    MessageBox.Show($"{filename} ({size / 1024}mb)");
+                    MessageBox.Show($"{filename} ({size / 1024}KB)");
 
                     break;
                 case ProtocolCode.Transfer:
