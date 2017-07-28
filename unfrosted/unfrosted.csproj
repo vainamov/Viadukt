@@ -47,8 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
-    <Compile Include="Network\Client.cs" />
     <Compile Include="Core\Connection.cs" />
+    <Compile Include="Network\Client.cs" />
     <Compile Include="Network\MetaService.cs" />
     <Compile Include="Network\PortController.cs" />
     <Compile Include="Core\ProtocolCode.cs" />

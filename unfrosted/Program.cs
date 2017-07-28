@@ -26,8 +26,13 @@ namespace Unfrosted
 
             PoolService.Instance.StartService(Configuration.Instance.PoolPort);
             MetaService.Instance.StartService(Configuration.Instance.MetaPort);
+            PortController.Instance.PrepareServers();
 
             Application.Run(new MainWindow());
+
+            PoolService.Instance.StopService();
+            MetaService.Instance.StopService();
+            PortController.Instance.StopServers();
         }
     }
 }

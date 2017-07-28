@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Unfrosted.Core;
 using Unfrosted.Network;
@@ -11,6 +12,8 @@ namespace Unfrosted.Forms
         public MainWindow() {
             InitializeComponent();
 
+            TransferManager.Instance.Owner = this;
+
             this.Closing += OnClosing;
 
             foreach (ToolStripMenuItem item in mstMain.Items) {
@@ -19,10 +22,6 @@ namespace Unfrosted.Forms
             }
             mstMain.Renderer = new ToolStripProfessionalRenderer(new WhiteColorTable());
 
-            for (var i = 50000; i < 50020; i++) {
-                tsmiTransfers.DropDownItems.Add($"42% - defectively-min.zip (10.0.115.3) [:{i}]");
-            }
-            
             tsmiReloadPool.Click += (sender, args) => {
                 PoolService.Instance.Reload();
                 lsbPoolMembers.Items.Clear();
@@ -37,9 +36,11 @@ namespace Unfrosted.Forms
         }
 
         private void OnClick(object sender, System.EventArgs e) {
+            var info = new FileInfo(Path.Combine(Application.StartupPath, "send", "client.exe"));
             TransferManager.Instance.CreateNewTransfer(new Transfer {
-                FileName = "vainamo-unfrosted-image.vmdkx",
-                FileSizeBytes = 86413L,
+                FilePath = info.FullName,
+                FileName = info.Name,
+                FileSizeBytes = info.Length,
                 SenderAddress = "127.0.0.1",
                 ReceiverAddress = "localhost"
             });
@@ -62,8 +63,12 @@ namespace Unfrosted.Forms
         }
 
         private void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) {
-            PoolService.Instance.StopService();
-            MetaService.Instance.StopService();
+        }
+
+        public void AddTransfer(Transfer transfer) {
+            var item = new ToolStripMenuItem("Establishing Connection...", null, (s, e) => transfer.Controller.ShowOverview());
+            transfer.Controller.ToolStripItem = item;
+            tsmiTransfers.DropDownItems.Add(item);
         }
     }
 }

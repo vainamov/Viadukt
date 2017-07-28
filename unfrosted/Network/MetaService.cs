@@ -2,7 +2,6 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using System.Windows.Forms;
 using Unfrosted.Core;
 using Unfrosted.Transfering;
 
@@ -82,8 +81,7 @@ namespace Unfrosted.Network
                                 TransferManager.Instance.ShowTransferPrompt(transfer);
                                 break;
                             case ProtocolCode.Accept:
-                                reader.ReadUInt32();
-                                MessageBox.Show(reader.ReadInt32().ToString());
+                                TransferManager.Instance.StartTransfer(reader.ReadUInt32(), reader.ReadInt32());
                                 break;
                             case ProtocolCode.Decline:
 

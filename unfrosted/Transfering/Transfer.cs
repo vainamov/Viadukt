@@ -14,6 +14,7 @@ namespace Unfrosted.Transfering
         public string SenderAddress { get; set; }
         public string ReceiverAddress { get; set; }
         public int Port { get; set; }
+        public TransferController Controller { get; set; }
 
         public Transfer() {
             Id = NextId++;

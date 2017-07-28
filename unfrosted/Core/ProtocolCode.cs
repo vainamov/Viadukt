@@ -5,6 +5,8 @@
         Decline,
         Accept,
         Meta,
-        Transfer
+        Transfer,
+        Data,
+        End
     }
 }
