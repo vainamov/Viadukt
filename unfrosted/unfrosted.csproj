@@ -48,9 +48,16 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Core\Connection.cs" />
-    <Compile Include="Network\Client.cs" />
-    <Compile Include="Network\MetaService.cs" />
-    <Compile Include="Network\PortController.cs" />
+    <Compile Include="Forms\TransferOverviewWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TransferOverviewWindow.Designer.cs">
+      <DependentUpon>TransferOverviewWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper.cs" />
+    <Compile Include="Networking\Client.cs" />
+    <Compile Include="Networking\MetaService.cs" />
+    <Compile Include="Networking\PortController.cs" />
     <Compile Include="Core\ProtocolCode.cs" />
     <Compile Include="Transfering\Transfer.cs" />
     <Compile Include="Transfering\TransferController.cs" />
@@ -68,15 +75,18 @@
     <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Network\PoolService.cs" />
+    <Compile Include="Networking\PoolService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Network\Server.cs" />
+    <Compile Include="Networking\Server.cs" />
     <EmbeddedResource Include="Forms\CreateTransferDialog.resx">
       <DependentUpon>CreateTransferDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TransferOverviewWindow.resx">
+      <DependentUpon>TransferOverviewWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

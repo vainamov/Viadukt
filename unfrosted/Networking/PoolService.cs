@@ -5,7 +5,7 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace Unfrosted.Network
+namespace Unfrosted.Networking
 {
     public class PoolService
     {

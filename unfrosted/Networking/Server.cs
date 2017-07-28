@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unfrosted.Core;
 using Unfrosted.Transfering;
 
-namespace Unfrosted.Network
+namespace Unfrosted.Networking
 {
     public class Server
     {
@@ -69,7 +69,6 @@ namespace Unfrosted.Network
 
                         var controller = Controllers.Find(c => c.Transfer.Id == id);
                         if (controller != null) {
-                            controller.Transfer.FilePath = Path.Combine(Application.StartupPath, "receive", "client.exe");
                             controller.Transfer.Connection = connection;
                             var thread = new Thread(ListenToConnection);
                             transferThreads.Add(thread);
@@ -104,6 +103,8 @@ namespace Unfrosted.Network
                     break;
                 }
             }
+
+            GC.Collect();
 
             writer.Flush();
             Controllers.Remove(controller);

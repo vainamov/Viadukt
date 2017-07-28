@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using Unfrosted.Core;
 using Unfrosted.Transfering;
 
-namespace Unfrosted.Network
+namespace Unfrosted.Networking
 {
     public class Client : IDisposable
     {
@@ -36,11 +35,15 @@ namespace Unfrosted.Network
                         controller.Transfer.Connection.BinaryWriter.Write((byte) ProtocolCode.Data);
                         controller.Transfer.Connection.BinaryWriter.Write(buffer);
                         controller.Transfer.Connection.BinaryWriter.Flush();
+                        controller.ReportProgress();
                     }
                 }
+                stream.Dispose();
             }
             controller.Transfer.Connection.BinaryWriter.Write((byte) ProtocolCode.End);
             controller.Transfer.Connection.BinaryWriter.Flush();
+
+            GC.Collect();
         }
 
         public void Dispose() {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using Unfrosted.Core;
-using Unfrosted.Network;
+using Unfrosted.Networking;
 using Unfrosted.Transfering;
 
 namespace Unfrosted.Forms

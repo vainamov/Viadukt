@@ -5,7 +5,7 @@ using System.Threading;
 using Unfrosted.Core;
 using Unfrosted.Transfering;
 
-namespace Unfrosted.Network
+namespace Unfrosted.Networking
 {
     public class MetaService
     {

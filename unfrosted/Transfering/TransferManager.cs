@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Unfrosted.Forms;
-using Unfrosted.Network;
+using Unfrosted.Networking;
 
 namespace Unfrosted.Transfering
 {
@@ -24,7 +26,21 @@ namespace Unfrosted.Transfering
             transfer.Port = PortController.Instance.GetBestPort();
 
             Owner.Invoke(new Action(() => {
-                var accept = MessageBox.Show(Owner, $"{transfer.SenderAddress} wants to share a file with you.\n\n{transfer.FileName} ({transfer.FileSizeBytes / 1024}KB)\n\nDo you want to receive this file?", "unfrosted", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                var accept = MessageBox.Show(Owner, $"{transfer.SenderAddress} wants to share a file with you.\n\n{transfer.FileName} ({Helper.GetSizeString(transfer.FileSizeBytes)})\n\nDo you want to receive this file?", "unfrosted", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+
+                if (accept) {
+                    var dialog = new SaveFileDialog {
+                        InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "unfrosted"),
+                        FileName = transfer.FileName,
+                        Filter = $"unfrosted (*.{transfer.FileName.Split('.').Last()})|*.{transfer.FileName.Split('.').Last()}"
+                    };
+                    if (dialog.ShowDialog(Owner) == DialogResult.OK) {
+                        transfer.FilePath = dialog.FileName;
+                    } else {
+                        accept = false;
+                    }
+                }
+
                 MetaService.Instance.SendMetaResult(transfer.SenderAddress, Configuration.Instance.MetaPort, transfer, accept);
                 if (accept) {
                     PortController.Instance.AssignController(new TransferController(transfer));

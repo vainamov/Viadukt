@@ -1,6 +1,9 @@
-﻿using System.Threading;
+﻿using System;
+using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
-using Unfrosted.Network;
+using Unfrosted.Forms;
+using Unfrosted.Networking;
 
 namespace Unfrosted.Transfering
 {
@@ -8,8 +11,9 @@ namespace Unfrosted.Transfering
     {
         public Transfer Transfer { get; }
         public ToolStripMenuItem ToolStripItem { get; set; }
+        public TransferOverviewWindow Overview { get; set; } = new TransferOverviewWindow();
 
-        public float Percentage => Transfer?.FileSizeBytes / 100 * BytesSent ?? 0;
+        public float Percentage => 100F / Transfer.FileSizeBytes * BytesSent;
 
         public long BytesSent { get; set; }
 
@@ -18,6 +22,7 @@ namespace Unfrosted.Transfering
         }
 
         public void StartTransfer() {
+            ShowOverview();
             new Thread(RunTransfer).Start();
         }
 
@@ -28,8 +33,14 @@ namespace Unfrosted.Transfering
             }
         }
 
+        public void ReportProgress() {
+            Overview.SetProgress(Percentage);
+        }
+
         public void ShowOverview() {
-            ToolStripItem.Text = $"{Percentage}% ({BytesSent / 1024}/{Transfer.FileSizeBytes / 1024}KB) - {Transfer.FileName} > {Transfer.ReceiverAddress} [:{Transfer.Port}]";
+            Application.OpenForms.OfType<MainWindow>().ElementAt(0).Invoke(new Action(() => Overview.Show()));
+
+            // ToolStripItem.Text = $"{Percentage}% ({Helper.GetSizeString(BytesSent)}/{Helper.GetSizeString(Transfer.FileSizeBytes)}) - {Transfer.FileName} > {Transfer.ReceiverAddress} [:{Transfer.Port}]";
         }
     }
 }
