@@ -9,15 +9,15 @@ namespace Unfrosted
                 return $"{bytes}B";
             }
             if (bytes < Math.Pow(1024, 2)) {
-                return $"{bytes / 1024}KB";
+                return $"{bytes / 1024F, 0:N}KB";
             }
             if (bytes < Math.Pow(1024, 3)) {
-                return $"{bytes / 1024 / 1024}MB";
+                return $"{bytes / 1024F / 1024F, 0:N}MB";
             }
             if (bytes < Math.Pow(1024, 4)) {
-                return $"{bytes / 1024 / 1024 / 1024}GB";
+                return $"{bytes / 1024F / 1024F / 1024F, 0:N}GB";
             }
-            return $"{bytes / 1024 / 1024 / 1024 / 1024}TB";
+            return $"{bytes / 1024F / 1024F / 1024F / 1024F, 0:N}TB";
         }
     }
 }

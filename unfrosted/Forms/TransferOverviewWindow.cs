@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using Unfrosted.Transfering;
 
 namespace Unfrosted.Forms
 {
@@ -16,8 +9,11 @@ namespace Unfrosted.Forms
             InitializeComponent();
         }
 
-        public void SetProgress(float percentage) {
-            Invoke(new Action(() => progressBar1.Value = (int) percentage));
+        public void SetProgress(TransferController controller) {
+            Text = $"{(int) controller.Percentage}% - Status";
+            lblPercentage.Text = controller.Percentage.ToString("N") + "%";
+            pgbProgress.Value = (int) controller.Percentage;
+            lblBytes.Text = $"{Helper.GetSizeString(controller.BytesSent)}/{Helper.GetSizeString(controller.Transfer.FileSizeBytes)}";
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Unfrosted.Forms
         }
 
         private void OnClick(object sender, System.EventArgs e) {
-            var info = new FileInfo(Path.Combine(Application.StartupPath, "send", "client.exe"));
+            var info = new FileInfo(Path.Combine(Application.StartupPath, "send", "data.rar"));
             TransferManager.Instance.CreateNewTransfer(new Transfer {
                 FilePath = info.FullName,
                 FileName = info.Name,

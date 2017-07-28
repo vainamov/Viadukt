@@ -34,7 +34,7 @@ namespace Unfrosted.Transfering
         }
 
         public void ReportProgress() {
-            Overview.SetProgress(Percentage);
+            Overview.Invoke(new Action(() => Overview.SetProgress(this)));
         }
 
         public void ShowOverview() {
