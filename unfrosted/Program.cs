@@ -1,7 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Unfrosted.Forms;
+using Unfrosted.Network;
 
-namespace unfrosted
+namespace Unfrosted
 {
     internal static class Program
     {
@@ -12,6 +16,17 @@ namespace unfrosted
         private static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            try {
+                Configuration.Instance = JsonConvert.DeserializeObject<Configuration>(File.ReadAllText(Path.Combine(Application.StartupPath, "config.json")));
+            } catch {
+                Configuration.Instance = new Configuration();
+                File.WriteAllText(Path.Combine(Application.StartupPath, "config.json"), JsonConvert.SerializeObject(Configuration.Instance));
+            }
+
+            PoolService.Instance.StartService(Configuration.Instance.PoolPort);
+            MetaService.Instance.StartService(Configuration.Instance.MetaPort);
+
             Application.Run(new MainWindow());
         }
     }

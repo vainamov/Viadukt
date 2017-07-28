@@ -1,11 +1,11 @@
 ﻿using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using unfrosted.Core;
+using Unfrosted.Core;
 
-namespace unfrosted
+namespace Unfrosted.Network
 {
-    internal class Client
+    public class Client
     {
         private readonly TcpClient client;
 
@@ -23,15 +23,11 @@ namespace unfrosted
             return true;
         }
 
-        public bool StartTransfer(Transfer transfer) {
+        public bool StartTransfer(Transfering.Transfer transfer) {
             transfer.Connection = new Connection(client);
             var thread = new Thread(ListenToConnection);
             thread.Start(transfer.Connection);
-
-            transfer.Connection.WriteCode(ProtocolCode.Meta);
-            transfer.Connection.BinaryWriter.Write((ulong)transfer.FileInfo.Length);
-            transfer.Connection.BinaryWriter.Write(transfer.FileInfo.Name);
-            transfer.Connection.BinaryWriter.Flush();
+            
 
             return true;
         }

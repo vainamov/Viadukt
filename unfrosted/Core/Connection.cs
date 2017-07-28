@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Net.Sockets;
 
-namespace unfrosted.Core
+namespace Unfrosted.Core
 {
-    internal class Connection
+    public class Connection
     {
         private readonly NetworkStream stream;
         public BinaryReader BinaryReader { get; }

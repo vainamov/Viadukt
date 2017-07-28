@@ -1,4 +1,4 @@
-﻿namespace unfrosted
+﻿namespace Unfrosted.Forms
 {
     partial class MainWindow
     {
@@ -27,16 +27,18 @@
         private void InitializeComponent() {
             this.mstMain = new System.Windows.Forms.MenuStrip();
             this.tsmiMain = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNewTransfer = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiReloadPool = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTransfers = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiConnectionDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.lsbPoolMembers = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.mstMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +46,7 @@
             // 
             this.mstMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiMain,
+            this.tsmiReloadPool,
             this.tsmiTransfers,
             this.tsmiInfo});
             this.mstMain.Location = new System.Drawing.Point(0, 0);
@@ -57,6 +60,8 @@
             // tsmiMain
             // 
             this.tsmiMain.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiNewTransfer,
+            this.toolStripSeparator2,
             this.tsmiSettings,
             this.toolStripSeparator1,
             this.tsmiClose});
@@ -64,22 +69,39 @@
             this.tsmiMain.Size = new System.Drawing.Size(70, 19);
             this.tsmiMain.Text = "unfrosted";
             // 
+            // tsmiNewTransfer
+            // 
+            this.tsmiNewTransfer.Name = "tsmiNewTransfer";
+            this.tsmiNewTransfer.Size = new System.Drawing.Size(143, 22);
+            this.tsmiNewTransfer.Text = "New Transfer";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(140, 6);
+            // 
             // tsmiSettings
             // 
             this.tsmiSettings.Name = "tsmiSettings";
-            this.tsmiSettings.Size = new System.Drawing.Size(116, 22);
+            this.tsmiSettings.Size = new System.Drawing.Size(143, 22);
             this.tsmiSettings.Text = "Settings";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(113, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(140, 6);
             // 
             // tsmiClose
             // 
             this.tsmiClose.Name = "tsmiClose";
-            this.tsmiClose.Size = new System.Drawing.Size(116, 22);
+            this.tsmiClose.Size = new System.Drawing.Size(143, 22);
             this.tsmiClose.Text = "Close";
+            // 
+            // tsmiReloadPool
+            // 
+            this.tsmiReloadPool.Name = "tsmiReloadPool";
+            this.tsmiReloadPool.Size = new System.Drawing.Size(82, 19);
+            this.tsmiReloadPool.Text = "Reload Pool";
             // 
             // tsmiTransfers
             // 
@@ -108,32 +130,24 @@
             this.tsmiAbout.Size = new System.Drawing.Size(161, 22);
             this.tsmiAbout.Text = "About unfrosted";
             // 
+            // lsbPoolMembers
+            // 
+            this.lsbPoolMembers.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lsbPoolMembers.FormattingEnabled = true;
+            this.lsbPoolMembers.ItemHeight = 17;
+            this.lsbPoolMembers.Location = new System.Drawing.Point(12, 102);
+            this.lsbPoolMembers.Name = "lsbPoolMembers";
+            this.lsbPoolMembers.Size = new System.Drawing.Size(240, 259);
+            this.lsbPoolMembers.TabIndex = 3;
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(314, 88);
+            this.button1.Location = new System.Drawing.Point(339, 136);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
+            this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(395, 88);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(476, 88);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -141,9 +155,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.lsbPoolMembers);
             this.Controls.Add(this.mstMain);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -170,9 +183,11 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiConnectionDetails;
         private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
         private System.Windows.Forms.ToolStripMenuItem tsmiTransfers;
+        private System.Windows.Forms.ToolStripMenuItem tsmiReloadPool;
+        private System.Windows.Forms.ListBox lsbPoolMembers;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewTransfer;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
     }
 }
 

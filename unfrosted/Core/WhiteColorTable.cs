@@ -1,9 +1,9 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace unfrosted.Core
+namespace Unfrosted.Core
 {
-    internal class WhiteColorTable : ProfessionalColorTable
+    public class WhiteColorTable : ProfessionalColorTable
     {
         public override Color MenuStripGradientBegin => Color.White;
         public override Color MenuStripGradientEnd => Color.White;

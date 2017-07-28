@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{37FF09FB-598D-4290-B10D-CEA448517394}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>unfrosted</RootNamespace>
+    <RootNamespace>Unfrosted</RootNamespace>
     <AssemblyName>unfrosted</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Deployment" />
@@ -45,22 +46,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Network\Client.cs" />
     <Compile Include="Core\Connection.cs" />
+    <Compile Include="Network\MetaService.cs" />
+    <Compile Include="Network\PortController.cs" />
     <Compile Include="Core\ProtocolCode.cs" />
-    <Compile Include="Core\Session.cs" />
-    <Compile Include="Core\Transfer.cs" />
+    <Compile Include="Transfering\Transfer.cs" />
+    <Compile Include="Transfering\TransferController.cs" />
+    <Compile Include="Transfering\TransferManager.cs" />
     <Compile Include="Core\WhiteColorTable.cs" />
-    <Compile Include="MainWindow.cs">
+    <Compile Include="Forms\CreateTransferDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWindow.Designer.cs">
+    <Compile Include="Forms\CreateTransferDialog.Designer.cs">
+      <DependentUpon>CreateTransferDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Network\PoolService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server.cs" />
-    <EmbeddedResource Include="MainWindow.resx">
+    <Compile Include="Network\Server.cs" />
+    <EmbeddedResource Include="Forms\CreateTransferDialog.resx">
+      <DependentUpon>CreateTransferDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -71,6 +86,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -87,7 +103,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\Events\" />
+    <Folder Include="Events\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

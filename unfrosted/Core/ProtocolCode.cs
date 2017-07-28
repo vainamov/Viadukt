@@ -1,6 +1,6 @@
-﻿namespace unfrosted.Core
+﻿namespace Unfrosted.Core
 {
-    internal enum ProtocolCode
+    public enum ProtocolCode
     {
         Decline,
         Accept,
