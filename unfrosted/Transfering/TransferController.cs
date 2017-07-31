@@ -35,12 +35,14 @@ namespace Unfrosted.Transfering
 
         public void ReportProgress() {
             Overview.Invoke(new Action(() => Overview.SetProgress(this)));
+
+            try {
+                Application.OpenForms.OfType<MainWindow>().ElementAt(0).Invoke(new Action(() => ToolStripItem.Text = $"{Percentage, 0:N}% ({Helper.GetSizeString(BytesSent)}/{Helper.GetSizeString(Transfer.FileSizeBytes)}) - {Transfer.FileName} > {Transfer.ReceiverAddress} [:{Transfer.Port}]"));
+            } catch { }
         }
 
         public void ShowOverview() {
             Application.OpenForms.OfType<MainWindow>().ElementAt(0).Invoke(new Action(() => Overview.Show()));
-
-            // ToolStripItem.Text = $"{Percentage}% ({Helper.GetSizeString(BytesSent)}/{Helper.GetSizeString(Transfer.FileSizeBytes)}) - {Transfer.FileName} > {Transfer.ReceiverAddress} [:{Transfer.Port}]";
         }
     }
 }

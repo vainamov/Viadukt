@@ -33,6 +33,7 @@ namespace Unfrosted.Networking
                 writer.Write((byte) ProtocolCode.Meta);
                 writer.Write(transfer.Id);
                 writer.Write(transfer.SenderAddress);
+                writer.Write(transfer.SenderName);
                 writer.Write(transfer.FileSizeBytes);
                 writer.Write(transfer.FileName);
 
@@ -74,6 +75,7 @@ namespace Unfrosted.Networking
                             case ProtocolCode.Meta:
                                 var transfer = new Transfer(reader.ReadUInt32()) {
                                     SenderAddress = reader.ReadString(),
+                                    SenderName = reader.ReadString(),
                                     FileSizeBytes = reader.ReadInt64(),
                                     FileName = reader.ReadString()
                                 };

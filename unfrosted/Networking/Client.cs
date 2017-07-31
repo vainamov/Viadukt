@@ -38,7 +38,6 @@ namespace Unfrosted.Networking
                         controller.ReportProgress();
                     }
                 }
-                stream.Dispose();
             }
             controller.Transfer.Connection.BinaryWriter.Write((byte) ProtocolCode.End);
             controller.Transfer.Connection.BinaryWriter.Flush();

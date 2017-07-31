@@ -68,6 +68,7 @@
             this.Controls.Add(this.lblPercentage);
             this.Controls.Add(this.pgbProgress);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "TransferOverviewWindow";
             this.ShowIcon = false;

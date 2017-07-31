@@ -42,11 +42,7 @@ namespace Unfrosted.Forms
             if (sender == tbxAddress) {
                 Transfer.ReceiverAddress = tbxAddress.Text;
             } else {
-                if (int.TryParse(tbxPort.Text, out var port)) {
-                    Transfer.Port = port;
-                } else {
-                    Transfer.Port = 0;
-                }
+                Transfer.Port = int.TryParse(tbxPort.Text, out var port) ? port : 0;
             }
 
             SetButtonEnabled();

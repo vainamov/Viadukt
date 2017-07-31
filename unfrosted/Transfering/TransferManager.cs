@@ -18,6 +18,7 @@ namespace Unfrosted.Transfering
         public List<TransferController> Controllers { get; set; } = new List<TransferController>();
 
         public void CreateNewTransfer(Transfer transfer) {
+            transfer.SenderName = $"{Environment.MachineName}\\{Environment.UserName}";
             MetaService.Instance.SendMeta(transfer.ReceiverAddress, Configuration.Instance.MetaPort, transfer);
             Transfers.Add(transfer);
         }
@@ -26,7 +27,8 @@ namespace Unfrosted.Transfering
             transfer.Port = PortController.Instance.GetBestPort();
 
             Owner.Invoke(new Action(() => {
-                var accept = MessageBox.Show(Owner, $"{transfer.SenderAddress} wants to share a file with you.\n\n{transfer.FileName} ({Helper.GetSizeString(transfer.FileSizeBytes)})\n\nDo you want to receive this file?", "unfrosted", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                //var accept = MessageBox.Show(Owner, $"{transfer.SenderName} ({transfer.SenderAddress}) wants to share a file with you.\n\n{transfer.FileName} ({Helper.GetSizeString(transfer.FileSizeBytes)})\n\nDo you want to receive this file?", "unfrosted", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+                var accept = new ReceiveTransferDialog().ShowDialog(Owner, $"{ transfer.FileName} ({ Helper.GetSizeString(transfer.FileSizeBytes)})", $"{transfer.SenderName} ({transfer.SenderAddress})") == DialogResult.Yes;
 
                 if (accept) {
                     var dialog = new SaveFileDialog {

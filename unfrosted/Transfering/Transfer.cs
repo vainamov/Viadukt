@@ -11,6 +11,7 @@ namespace Unfrosted.Transfering
         public string FileName { get; set; }
         public uint Id { get; }
         public Connection Connection { get; set; }
+        public string SenderName { get; set; }
         public string SenderAddress { get; set; }
         public string ReceiverAddress { get; set; }
         public int Port { get; set; }

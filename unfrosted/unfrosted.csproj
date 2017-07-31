@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Core\Connection.cs" />
+    <Compile Include="Forms\ReceiveTransferDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReceiveTransferDialog.Designer.cs">
+      <DependentUpon>ReceiveTransferDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TransferOverviewWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReceiveTransferDialog.resx">
+      <DependentUpon>ReceiveTransferDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TransferOverviewWindow.resx">
       <DependentUpon>TransferOverviewWindow.cs</DependentUpon>
